@@ -1,0 +1,10 @@
+.BoardUI {
+    text-align: center;
+}
+
+.BoardUI td {
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    background-color: lightgray;
+}

@@ -1,8 +1,9 @@
+import './BoardUI.css';
 const BoardUI = ({board}) => {
     if (!board || !board.length) return <div>nothing</div>;
 
     return(
-        <div>
+        <div className="BoardUI">
             <table>
                 {board.map((row, rindex) => {
                     return (<tr>
