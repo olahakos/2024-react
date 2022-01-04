@@ -28,6 +28,7 @@ const transform = (board, direction) => {
     switch(direction) {
         case 'LEFT':
             return board;
+            break;
         case 'RIGHT':
             return mirrorMatrixByY(board);
         case 'UP':

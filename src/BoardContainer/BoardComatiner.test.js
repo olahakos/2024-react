@@ -17,7 +17,7 @@ describe('createBoard', () => {
         let notNull = 0;
         board.forEach( row => {
             row.forEach( item => {
-                if (item !== null) notNull++;
+                if (item !== 0) notNull++;
             })
         })
         expect(notNull).toEqual(2);

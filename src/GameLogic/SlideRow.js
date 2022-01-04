@@ -21,17 +21,17 @@ const cleanup = (row) => {
 
 const slideItem = (row, index) => {
     // end of recursion cases
-    if (index === 0 || row[index] === null) return row;
+    if (index === 0 || row[index] === 0) return row;
 
     const newRow = [...row];
     switch(newRow[index - 1]) {
-        case null:
+        case 0:
             newRow[index - 1] = newRow[index];
-            newRow[index] = null;
+            newRow[index] = 0;
             return slideItem(newRow, index - 1);
         case newRow[index]:
             newRow[index - 1] = `${newRow[index] * BASE}_MERGE`
-            newRow[index] = null;
+            newRow[index] = 0;
     }
     return newRow;
 }

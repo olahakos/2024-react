@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import BoardUI from "../BoardUI/BoardUI";
 import { BASE, DIMENSION } from "../constants";
+import { slideBoard } from "../GameLogic/SlideBoard";
 import { getEmptyIndexes, getEmptyMatrix } from "./MatrixHelpers";
 import { pickTwoIndexes, selectRandom } from "./randomHelpers";
 
@@ -18,10 +19,6 @@ export const createBoard = (dim = DIMENSION, bas = BASE) => {
     return arr;
 }
 
-export const slideBoard = (board, setBoard, direction) => {
-    
-}
-
 function BoardContainer() {
     const [board, setBoard] = useState([]);
 
@@ -30,10 +27,9 @@ function BoardContainer() {
         setBoard(initialBoard)
     }, [createBoard])
 
-    const onClick = () => {
-        setBoard( arr => {
-            arr[0][0] = 9;
-            return [...arr];
+    const updateBoard = (direction) => {
+        setBoard( () => {
+            return slideBoard(board, direction);;
         });
     }
 
@@ -43,10 +39,10 @@ function BoardContainer() {
                 board={board}
                 boardJoin={board.join}
             />
-            <button onClick={ onClick } >UP</button>
-            <button onClick={ onClick } >DOWN</button>
-            <button onClick={ onClick } >LEFT</button>
-            <button onClick={ onClick } >RIGHT</button>
+            <button onClick={ () => updateBoard('UP')} >UP</button>
+            <button onClick={ () => updateBoard('DOWN')} >DOWN</button>
+            <button onClick={ () => updateBoard('LEFT')} >LEFT</button>
+            <button onClick={ () => updateBoard('RIGHT')} >RIGHT</button>
         </div>
     );
 }

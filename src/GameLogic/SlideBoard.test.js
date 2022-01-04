@@ -3,52 +3,54 @@ import { slideBoard, transform } from "./SlideBoard";
 describe('slideBoard', () => {
     test('LEFT', () => {
         const board = [
-            [null, 2, null],
-            [2, null, 2],
-            [null, null, 2],
+            [0, 2, 4],
+            [2, 0, 2],
+            [0, 0, 2],
         ];
         const expectation = [
-            [2, null, null],
-            [4, null, null],
-            [2, null, null],
+            [2, 4, 0],
+            [4, 0, 0],
+            [2, 0, 0],
         ];
         expect(slideBoard(board, 'LEFT')).toEqual(expectation);
     });
     test('RIGHT', () => {
         const board = [
-            [null, 2, null],
-            [2, null, 2],
-            [null, null, 2],
+            [4, 2, 0, 0],
+            [2, 0, 2, 0],
+            [0, 0, 0, 0],
+            [4, 2, 0, 0],
         ];
         const expectation = [
-            [null, null, 2],
-            [null, null, 4],
-            [null, null, 2],
+            [0, 0,  4, 2],
+            [0, 0, 0, 4],
+            [0, 0, 0, 0],
+            [0, 0, 4, 2],
         ];
         expect(slideBoard(board, 'RIGHT')).toEqual(expectation);
     });
     test('UP', () => {
         const board = [
-            [null, 2, null],
-            [2, null, 2],
-            [null, null, 2],
+            [0, 2, 0],
+            [2, 0, 2],
+            [0, 0, 2],
         ];
         const expectation = [
             [2, 2, 4],
-            [null, null, null],
-            [null, null, null],
+            [0, 0, 0],
+            [0, 0, 0],
         ];
         expect(slideBoard(board, 'UP')).toEqual(expectation);
     });
     test('DOWN', () => {
         const board = [
-            [null, 2, null],
-            [2, null, 2],
-            [null, null, 2],
+            [0, 2, 0],
+            [2, 0, 2],
+            [0, 0, 2],
         ];
         const expectation = [
-            [null, null, null],
-            [null, null, null],
+            [0, 0, 0],
+            [0, 0, 0],
             [2, 2, 4],
         ];
         expect(slideBoard(board, 'DOWN')).toEqual(expectation);

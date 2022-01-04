@@ -6,7 +6,7 @@ const getEmptyMatrix = (dim) => {
     for (let i = 0; i < dim; i++) {
         arr[i] = [];
         for (let j = 0; j < dim; j++) {
-            arr[i][j] = null;
+            arr[i][j] = 0;
         }
     }
 
@@ -18,7 +18,7 @@ const getEmptyIndexes = (mtx) => {
      * Return with an array of the indexes, where 
      * the board value is null
      */
-    return getMatrixIndexesByCondition(mtx, i => i === null );
+    return getMatrixIndexesByCondition(mtx, i => i === 0 );
 }
 
 const getMatrixIndexesByCondition = (mtx, func) => {
@@ -33,7 +33,8 @@ const getMatrixIndexesByCondition = (mtx, func) => {
 
 const mirrorMatrixByY = (mtx) => {
     return mtx.map(row => {
-        return row.reverse();
+        const newRow = [...row];
+        return newRow.reverse();
     });
 }
 
