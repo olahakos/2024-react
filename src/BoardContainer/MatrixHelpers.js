@@ -31,8 +31,26 @@ const getMatrixIndexesByCondition = (mtx, func) => {
     return trueIndexes;
 }
 
+const mirrorMatrixByY = (mtx) => {
+    return mtx.map(row => {
+        return row.reverse();
+    });
+}
+
+const flipMatrix = (mtx) => {
+    const flippedMtx = getEmptyMatrix(mtx.length);
+    for(let i = 0; i<mtx.length; i++) {
+        for (let j = 0; j<mtx[i].length; j++) {
+            flippedMtx[j][i] = mtx[i][j];
+        }
+    }
+    return flippedMtx
+}
+
 export {
     getEmptyIndexes,
     getMatrixIndexesByCondition,
     getEmptyMatrix,
+    flipMatrix,
+    mirrorMatrixByY,
 }

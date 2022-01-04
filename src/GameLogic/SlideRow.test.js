@@ -1,4 +1,4 @@
-import { oneStep, slideItem, slideRow } from "./GameLogic";
+import { slideItem, slideRow } from "./SlideRow";
 
 describe('slideRow', () => {
     test('slide without merge', () => {

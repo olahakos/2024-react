@@ -18,6 +18,10 @@ export const createBoard = (dim = DIMENSION, bas = BASE) => {
     return arr;
 }
 
+export const slideBoard = (board, setBoard, direction) => {
+    
+}
+
 function BoardContainer() {
     const [board, setBoard] = useState([]);
 

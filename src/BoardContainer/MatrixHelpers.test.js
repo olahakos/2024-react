@@ -1,4 +1,4 @@
-import { getEmptyIndexes, getMatrixIndexesByCondition, getEmptyMatrix } from "./MatrixHelpers";
+import { getEmptyIndexes, getMatrixIndexesByCondition, getEmptyMatrix, mirrorMatrixByY, flipMatrix } from "./MatrixHelpers";
 
 describe('getEmptyMatrix', () => {
     test('can create an empty board in the dimension cons', () => {
@@ -43,3 +43,33 @@ describe('getEmptyIndexes', () => {
         expect(getEmptyIndexes(board)).toEqual(res);
     });
 });
+
+describe('mirrorMatrixByY', () => {
+    test('mirror the matrix by the middle Y angle', () => {
+        const board = [
+            [1, 2],
+            [3, 4]
+        ];
+        const res = [
+            [2, 1],
+            [4, 3]
+        ];
+        expect(mirrorMatrixByY(board)).toEqual(res);
+    });
+});
+
+describe('flipMatrix', () => {
+    test('flip the matrix by its diagonal', () => {
+        const board = [
+            [1, 2],
+            [3, 4]
+        ];
+        const res = [
+            [1, 3],
+            [2, 4]
+        ];
+        expect(flipMatrix(board)).toEqual(res);
+    });
+});
+
+
