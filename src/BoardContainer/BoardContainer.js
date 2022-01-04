@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import BoardUI from "../BoardUI/BoardUI";
 import { BASE, DIMENSION } from "../constants";
+import { growingBoard } from "../GameLogic/GrowBoard";
 import { slideBoard } from "../GameLogic/SlideBoard";
-import { getEmptyIndexes, getEmptyMatrix } from "./MatrixHelpers";
+import { areThemSameMatrixes, compareMatrixes, getEmptyIndexes, getEmptyMatrix } from "./MatrixHelpers";
 import { pickTwoIndexes, selectRandom } from "./randomHelpers";
+
+import ArrowKeysReact from "arrow-keys-react/lib/ArrowKeysReact";
 
 const initBoard = () => {
 
@@ -29,12 +32,30 @@ function BoardContainer() {
 
     const updateBoard = (direction) => {
         setBoard( () => {
-            return slideBoard(board, direction);;
+            const slidedBoard = slideBoard(board, direction);
+            if(areThemSameMatrixes(slidedBoard, board)) return slidedBoard;
+            // TODO: End Game?
+            return growingBoard(slidedBoard);
         });
     }
 
+    ArrowKeysReact.config({
+        left: () => {
+            updateBoard('LEFT');
+        },
+        right: () => {
+          updateBoard('RIGHT');
+        },
+        up: () => {
+          updateBoard('UP');
+        },
+        down: () => {
+          updateBoard('DOWN');
+        }
+      });
+
     return (
-        <div className="BoardContainer">
+        <div className="BoardContainer" {...ArrowKeysReact.events} tabIndex="1" >
             <BoardUI
                 board={board}
                 boardJoin={board.join}

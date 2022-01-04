@@ -1,4 +1,4 @@
-import { getEmptyIndexes, getMatrixIndexesByCondition, getEmptyMatrix, mirrorMatrixByY, flipMatrix } from "./MatrixHelpers";
+import { getEmptyIndexes, getMatrixIndexesByCondition, getEmptyMatrix, mirrorMatrixByY, flipMatrix, areThemSameMatrixes } from "./MatrixHelpers";
 
 describe('getEmptyMatrix', () => {
     test('can create an empty board in the dimension cons', () => {
@@ -82,5 +82,32 @@ describe('flipMatrix', () => {
         expect(flipMatrix(board)).toEqual(res);
     });
 });
+
+describe('areThemSameMatrixes', () => {
+    test('same matrixes', () => {
+        const mtx1 = [
+            [1, 2],
+            [3, 4]
+        ];
+        const mtx2 = [
+            [1, 2],
+            [3, 4]
+        ];
+        expect(areThemSameMatrixes(mtx1, mtx2)).toEqual(true);
+    });
+    test('different matrixes', () => {
+        const mtx1 = [
+            [1, 2],
+            [3, 4]
+        ];
+        const mtx2 = [
+            [1, 3],
+            [3, 4]
+        ];
+        expect(areThemSameMatrixes(mtx1, mtx2)).toEqual(false);
+    });
+});
+
+
 
 

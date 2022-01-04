@@ -48,7 +48,19 @@ const flipMatrix = (mtx) => {
     return flippedMtx
 }
 
+const areThemSameMatrixes = (mtx1, mtx2) => {
+    if (mtx1.length !== mtx2.length) return false;
+
+    for(let i = 0; i<mtx1.length; i++) {
+        for (let j = 0; j<mtx1[i].length; j++) {
+            if (mtx1[i][j] !== mtx2[i][j]) return false;
+        }
+    };
+    return true;
+}
+
 export {
+    areThemSameMatrixes,
     getEmptyIndexes,
     getMatrixIndexesByCondition,
     getEmptyMatrix,
