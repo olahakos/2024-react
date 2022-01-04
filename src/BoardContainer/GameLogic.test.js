@@ -59,20 +59,6 @@ describe('slideRow', () => {
     
 });
 
-describe('oneStep', () => {
-    test('slide if the next slot is empty', () => {
-        expect(oneStep(2, null)).toBe('slide')
-    })
-
-    test('merge if the next slot is with the same value', () => {
-        expect(oneStep(2, 2)).toBe('merge')
-    })
-
-    test('stop otherweise', () => {
-        expect(oneStep(2, 4)).toBe('stop')
-    })
-});
-
 describe('slideItem', () => {
     test('not moving first item in the row', () => {
         const row = [2, null, null, null];

@@ -3,7 +3,6 @@ import { BASE } from "../constants";
 const slideRow = (row) => {
     let newRow = [...row];
     for(let i = 0; i<row.length; i++){
-        // console.log('row', col, index);
         newRow = slideItem(newRow, i);
     }
     // clean up after merged items
@@ -37,14 +36,7 @@ const slideItem = (row, index) => {
     return newRow;
 }
 
-const oneStep = (curr, next) => {
-    if (!next || next === null) return 'slide';
-    if (next === curr) return 'merge';
-    else return 'stop';
-}
-
 export {
-    oneStep,
     slideRow,
     slideItem,
 }
