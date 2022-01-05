@@ -54,10 +54,10 @@ function BoardContainer() {
           updateBoard('DOWN');
         }
       });
-      
+
     const handlers = useSwipeable({
-        onSwipedLeft: (eventData) => updateBoard('RIGHT'),
-        onSwipedRight: (eventData) => updateBoard('LEFT'),
+        onSwipedLeft: (eventData) => updateBoard('LEFT'),
+        onSwipedRight: (eventData) => updateBoard('RIGHT'),
         onSwipedUp: (eventData) => updateBoard('UP'),
         onSwipedDown: (eventData) => updateBoard('DOWN'),
     });
