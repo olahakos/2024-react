@@ -7,6 +7,7 @@ import { areThemSameMatrixes, compareMatrixes, getEmptyIndexes, getEmptyMatrix }
 import { pickTwoIndexes, selectRandom } from "./randomHelpers";
 
 import ArrowKeysReact from "arrow-keys-react/lib/ArrowKeysReact";
+import { useSwipeable } from "react-swipeable";
 
 const initBoard = () => {
 
@@ -53,9 +54,21 @@ function BoardContainer() {
           updateBoard('DOWN');
         }
       });
+      
+    const handlers = useSwipeable({
+        onSwipedLeft: (eventData) => updateBoard('RIGHT'),
+        onSwipedRight: (eventData) => updateBoard('LEFT'),
+        onSwipedUp: (eventData) => updateBoard('UP'),
+        onSwipedDown: (eventData) => updateBoard('DOWN'),
+    });
+      
 
     return (
-        <div className="BoardContainer" {...ArrowKeysReact.events} tabIndex="1" >
+        <div 
+            className="BoardContainer" 
+            {...ArrowKeysReact.events} tabIndex="1" 
+            {...handlers}
+        >
             <BoardUI
                 board={board}
                 boardJoin={board.join}
