@@ -7,7 +7,12 @@ const getBoard = () => {
     return JSON.parse(lsBoard) || null;
 }
 
+const resetBoard = () => {
+    localStorage.removeItem('board');
+}
+
 export {
     saveBoard,
     getBoard,
+    resetBoard,
 }

@@ -1,4 +1,4 @@
-import { createBoard } from "./BoardContainer";
+import { createBoard } from "./boardHelpers";
 
 describe('createBoard', () => {
     let board;

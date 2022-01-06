@@ -1,28 +1,14 @@
 import { useEffect, useState } from "react";
-import BoardUI from "../BoardUI/BoardUI";
-import { BASE, DIMENSION } from "../constants";
+import BoardUI from "../UI/BoardUI";
 import { growingBoard } from "../GameLogic/GrowBoard";
 import { slideBoard } from "../GameLogic/SlideBoard";
-import { areThemSameMatrixes, getEmptyIndexes, getEmptyMatrix } from "./MatrixHelpers";
-import { pickTwoIndexes, selectRandom } from "./randomHelpers";
+import { areThemSameMatrixes } from "./MatrixHelpers";
 
 import ArrowKeysReact from "arrow-keys-react/lib/ArrowKeysReact";
 import { useSwipeable } from "react-swipeable";
 import { getBoard, saveBoard } from "../LocalDB/LocalDB";
-
-const initBoard = () => {
-
-}
-
-export const createBoard = (dim = DIMENSION, bas = BASE) => {
-    const arr = getEmptyMatrix(dim);
-    const emptys = getEmptyIndexes(arr);
-    const [ind1, ind2] = pickTwoIndexes(emptys);
-
-    arr[ind1.i][ind1.j] = selectRandom([bas, bas*bas]);
-    arr[ind2.i][ind2.j] = selectRandom([bas, bas*bas]);
-    return arr;
-}
+import { Menu } from "../UI/Menu";
+import { createBoard } from "./boardHelpers";
 
 function BoardContainer() {
     const [board, setBoard] = useState([]);
@@ -79,6 +65,7 @@ function BoardContainer() {
                 board={board}
                 boardJoin={board.join}
             />
+            <Menu setBoard={setBoard}/>
         </div>
     );
 }
