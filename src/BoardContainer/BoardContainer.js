@@ -3,11 +3,12 @@ import BoardUI from "../BoardUI/BoardUI";
 import { BASE, DIMENSION } from "../constants";
 import { growingBoard } from "../GameLogic/GrowBoard";
 import { slideBoard } from "../GameLogic/SlideBoard";
-import { areThemSameMatrixes, compareMatrixes, getEmptyIndexes, getEmptyMatrix } from "./MatrixHelpers";
+import { areThemSameMatrixes, getEmptyIndexes, getEmptyMatrix } from "./MatrixHelpers";
 import { pickTwoIndexes, selectRandom } from "./randomHelpers";
 
 import ArrowKeysReact from "arrow-keys-react/lib/ArrowKeysReact";
 import { useSwipeable } from "react-swipeable";
+import { getBoard, saveBoard } from "../LocalDB/LocalDB";
 
 const initBoard = () => {
 
@@ -27,16 +28,21 @@ function BoardContainer() {
     const [board, setBoard] = useState([]);
 
     useEffect(() => {
-        const initialBoard = createBoard();
-        setBoard(initialBoard)
-    }, [createBoard])
+        let initialBoard = getBoard();
+        if(!initialBoard){
+            initialBoard = createBoard();
+        }
+        setBoard(initialBoard);
+    }, [getBoard, createBoard])
 
     const updateBoard = (direction) => {
         setBoard( () => {
             const slidedBoard = slideBoard(board, direction);
             if(areThemSameMatrixes(slidedBoard, board)) return slidedBoard;
             // TODO: End Game?
-            return growingBoard(slidedBoard);
+            const grownBoard = growingBoard(slidedBoard);
+            saveBoard(grownBoard);
+            return grownBoard;
         });
     }
 
@@ -73,10 +79,6 @@ function BoardContainer() {
                 board={board}
                 boardJoin={board.join}
             />
-            <button onClick={ () => updateBoard('UP')} >UP</button>
-            <button onClick={ () => updateBoard('DOWN')} >DOWN</button>
-            <button onClick={ () => updateBoard('LEFT')} >LEFT</button>
-            <button onClick={ () => updateBoard('RIGHT')} >RIGHT</button>
         </div>
     );
 }
