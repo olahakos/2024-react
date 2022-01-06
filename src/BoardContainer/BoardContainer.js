@@ -9,8 +9,9 @@ import { useSwipeable } from "react-swipeable";
 import { getBoard, saveBoard } from "../LocalDB/LocalDB";
 import { Menu } from "../UI/Menu";
 import { createBoard } from "./boardHelpers";
+import { Container } from "@mui/material";
 
-function BoardContainer() {
+function BoardContainer({theme}) {
     const [board, setBoard] = useState([]);
 
     useEffect(() => {
@@ -56,17 +57,22 @@ function BoardContainer() {
       
 
     return (
-        <div 
+        <Container 
+            maxWidth='sm' 
             className="BoardContainer" 
             {...ArrowKeysReact.events} tabIndex="1" 
             {...handlers}
         >
+            <Menu 
+                setBoard={setBoard}
+                theme={theme}
+            />
             <BoardUI
                 board={board}
                 boardJoin={board.join}
+                theme={theme}
             />
-            <Menu setBoard={setBoard}/>
-        </div>
+        </Container>
     );
 }
 export default BoardContainer;

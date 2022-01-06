@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import { createBoard } from "../BoardContainer/boardHelpers";
 import { resetBoard } from "../LocalDB/LocalDB";
 
@@ -7,6 +8,6 @@ export const Menu = ({setBoard}) => {
         setBoard(createBoard());
     }
     return (
-        <button onClick={ () => onResetClick()}>Restart</button>
+        <Button variant="contained" onClick={ () => onResetClick()}>Restart</Button>
     );
 }

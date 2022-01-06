@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './TMP/App';
 import BoardContainer from './BoardContainer/BoardContainer';
 import reportWebVitals from './reportWebVitals';
+import { ThemeProvider } from '@mui/system';
+import { theme } from './UI/theme';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BoardContainer/>
+    <ThemeProvider theme={theme} >
+      <BoardContainer theme={theme} />
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
